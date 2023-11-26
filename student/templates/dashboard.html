@@ -1,0 +1,130 @@
+<style>
+  .user-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-card .user-info {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h1, h2 {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .drive-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    background-color: #fff;
+    list-style: none;
+    display: inline-block; /* Display drives in a row */
+  }
+
+  .drive-card h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .drive-card p {
+    margin-bottom: 8px;
+  }
+
+  .messages {
+    list-style: none;
+    padding: 0;
+  }
+
+  .alert {
+    margin-bottom: 20px;
+  }
+
+  /* Responsive grid layout for drives */
+  .apply_for_drive ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .apply_for_drive li {
+    flex: 0 0 calc(33.33% - 20px); 
+    margin: 10px;
+  }
+</style>
+
+
+<h1>User Details</h1>
+<div class="user-details">
+  {% for user in user_details %}
+  <div class="user-card">
+    <div class="user-info">
+      <p><strong>First Name :</strong> {{ user.first_name }}</p>
+      <p><strong>Last Name :</strong> {{ user.last_name }}</p>
+      <p><strong>Gender :</strong> {{ user.gender }}</p>
+
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+      <p><strong>Address:</strong> {{ user.address }}</p>
+
+      <p><strong>Course:</strong> {{ user.course }}</p>
+      <p><strong>Branch:</strong> {{ user.branch }}</p>
+
+      <p><strong>GPA:</strong> {{ user.GPA }}</p>
+
+      {% if user.image %}
+      <img src="{{ user.image.url }}" alt="Student Image" width="150">
+      {% endif %}
+      <p><strong>Roll No:</strong> {{ user.rollno }}</p>
+      <p><strong>Date of Birth:</strong> {{ user.date_of_birth }}</p>
+
+      <a href="{% url 'edit_details' %}">Edit</a>
+    </div>
+  </div>
+  {% empty %}
+  <p>No user details available.</p>
+  {% endfor %}
+</div>
+
+<h2> Apply for Drives</h2>
+
+{% if messages %}
+        <ul class="messages">
+            {{ message.tags }}
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %} 
+                {{ message }}
+                {% endfor %}
+
+              </div>
+        {% endif %}
+
+        
+<div class="apply_for_drive">
+  {% if drives %}
+  <ul>
+    {% for drive in drives %}
+    <li class="drive-card">
+      <h3>{{ drive.company }}</h3>
+      <p><strong>Title</strong> {{ drive.title }}</p>
+      <p><strong>Date:</strong> {{ drive.date }}</p>
+      <p><strong>Description:</strong> {{ drive.description }}</p>
+      <a href="{% url 'apply_to_drive' placement_drive_id=drive.id %}">Apply</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+      <p>No placement drives available.</p>
+  {% endif %}
+</div>

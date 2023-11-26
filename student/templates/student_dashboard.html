@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+{% block start  %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Student Dashboard</h1>
+
+    <form action="{% url 'student_dashboard' %}" method="post">
+        {% csrf_token %}
+
+        
+
+    {% if student %}
+        <h2>Student Details</h2>
+
+        <ul>
+            <li>Name: {{ student.name }}</li>
+            <li>Email: {{ student.email }}</li>
+            <li>Phone Number: {{ student.phone_number }}</li>
+            <li>Address: {{ student.address }}</li>
+        </ul>
+    {% endif %}
+</body>
+</html>
+
+{% endblock %}

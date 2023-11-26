@@ -1,0 +1,62 @@
+<style>
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180vh;
+  background-color: lightgray; 
+}
+
+/* Style the card-like container */
+.form-container {
+  background-color: #fff; /* Card background color */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Box shadow */
+  border-radius: 8px;
+  padding: 20px;
+  width: 500px; 
+}
+
+/* Apply basic styling to form fields */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  background-color: #007bff; /* Blue color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Change the button color on hover */
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Style form labels if needed */
+label {
+  font-weight: bold;
+}
+
+/* Add spacing between form fields */
+.form-field {
+  margin-bottom: 10px;
+}
+
+</style>
+<div class="form-container">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+</div>  

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student placement System</title>
+    <style>
+        h1 {
+            
+            color:#f2eced;
+            
+            text-transform: uppercase;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("/static/images/placement.png");
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            opacity: 0.6;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        .navbar-logo {
+            display: flex; 
+            align-items: center; 
+        }
+
+        .navbar-logo img {
+            width: 110px;
+            height: 74px;
+            margin-right: 20px;
+        }
+
+        .navbar-login a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            background: blue;
+        }
+
+        .navbar-login a:hover {
+            background-color: blue;
+            color: greenyellow;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="">
+                <img src="/static/images/logo.jpg" alt="Logo" width="110" height="74">
+            </a>
+            <h1> welcome to RIT</h1>
+        </div>
+        <div class="navbar-login">
+            {% if request.user.is_authenticated %}
+            <a href="/logout">Logout</a>
+            {% else %}
+            <a href="/student/login/">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    {%block start %}
+
+    
+
+    <button><a href="/student/enter_details/">Complete the profile</a></button>
+    <button><a href="/student/student_dashboard/">Dashboard</a></button>
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+</body>
+<footer>
+    <p>copyright &#169; licnesed by RIT</p>
+</footer>
+
+</html>

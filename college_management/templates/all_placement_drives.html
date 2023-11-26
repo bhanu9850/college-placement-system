@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Drives List</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+      
+        h1 {
+          text-align: center;
+          background-color: #007bff;
+          color: white;
+          padding: 10px;
+        }
+      
+        h2 {
+          text-align: center;
+        }
+      
+        .drive-cards {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          margin: 20px;
+        }
+      
+        .drive-card {
+          background-color: #fff;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          padding: 20px;
+          margin: 10px;
+          width: 300px;
+          list-style: none;
+          display: inline-block; /* Display drives in a row */
+        }
+      
+        .drive-card h3 {
+          color: #333;
+          margin-bottom: 10px;
+        }
+      
+        .drive-card p {
+          margin-bottom: 8px;
+        }
+        
+        /* Responsive grid layout for drives */
+        .drive-cards {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+        }
+      
+        .drive-card {
+          flex: 0 0 calc(33.33% - 20px); /* Adjust width based on your preference */
+          margin: 10px;
+        }
+
+        .drive-card-buttons {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+        }
+        .drive-card-buttons a {
+          padding: 10px 15px;
+          text-decoration: none;
+          border-radius: 5px;
+          font-weight: bold;
+          transition: background-color 0.3s, color 0.3s;
+          cursor: pointer;
+        }
+    
+        .drive-card-buttons .update-button {
+          background-color: #4CAF50; /* Green color for update button */
+          color: #fff;
+        }
+    
+        .drive-card-buttons .delete-button {
+          background-color: #D32F2F; /* Dark red color for delete button */
+          color: #fff;
+        }
+    
+        /* Hover effect for buttons */
+        .drive-card-buttons a:hover {
+          background-color: #333; 
+          color: #fff;
+        }
+        
+        
+        
+      </style>
+      
+
+</head>
+<body>
+    <h1>All Placement Drives</h1>
+
+    {% if drives %}
+        <div class="drive-cards">
+            {% for drive in drives %}
+                <div class="drive-card">
+                    <h3>{{ drive.company }}</h3>
+                    <p><strong>Title:</strong> {{ drive.title }}</p>
+                    <p><strong>Date:</strong> {{ drive.date }}</p>
+                    <p><strong>Description:</strong> {{ drive.description }}</p>
+                    <div class="drive-card-buttons">
+                    <a href="{% url 'update_placement_drive' placement_drive_id=drive.id %}">Update</a>
+                    <a href="{% url 'delete_placement_drive' placement_drive_id=drive.id %}" class="delete-button" onclick="return confirm('Are you sure you want to delete this placement drive?')">Delete</a>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No placement drives available.</p>
+    {% endif %}
+</body>
+</html>
