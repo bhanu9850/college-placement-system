@@ -23,7 +23,7 @@ vs code
 
 Installation
 Clone the repository:
-git clone https://github.com/your-username/college-placement-system.git
+git clone https://github.com/bhanu9850/college-placement-system.git
 
 Navigate to the project directory:
 cd college-placement-system
