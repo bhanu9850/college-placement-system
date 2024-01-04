@@ -45,3 +45,5 @@ College administrators can log in, manage student profiles, post job openings, a
 Acknowledgements
 Django Documentation
 Python Documentation
+
+Note : Acces all the files using master Tag
